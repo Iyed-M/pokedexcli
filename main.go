@@ -1,7 +1,10 @@
 package main
 
-import "fmt"
+const DEFAULT_URL = "https://pokeapi.co/api/v2/location-area"
 
 func main() {
-	fmt.Println("Hello, World!")
+	cfg := config{
+		nextLocationAreaURL: DEFAULT_URL,
+	}
+	startRepl(&cfg)
 }
