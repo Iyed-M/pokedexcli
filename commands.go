@@ -1,5 +1,7 @@
 package main
 
+import "github.com/Iyed-M/pokedexcli/api"
+
 type clicommand struct {
 	name        string
 	description string
@@ -9,6 +11,7 @@ type clicommand struct {
 type config struct {
 	nextLocationAreaURL     string
 	previousLocationAreaURL string
+	client                  *api.Client
 }
 
 func getAvailableCommands() map[string]clicommand {
