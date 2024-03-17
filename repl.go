@@ -10,8 +10,7 @@ func startRepl(cfg *config) {
 
 	for {
 		fmt.Print("Pokedex > ")
-		inputCmd, err := cleanInput()
-
+		inputCmd, arg, err := cleanInput()
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "error reading command : %s\n", err)
 		}
@@ -24,7 +23,7 @@ func startRepl(cfg *config) {
 			fmt.Fprintf(os.Stderr, "command %s not found\n", inputCmd)
 			continue
 		}
-		if err := cmd.callback(cfg); err != nil {
+		if err := cmd.callback(cfg, arg); err != nil {
 			fmt.Fprintf(os.Stderr, "error executing command %s : %s\n", inputCmd, err)
 		}
 	}

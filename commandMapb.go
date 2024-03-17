@@ -2,17 +2,15 @@ package main
 
 import (
 	"fmt"
-
-	"github.com/Iyed-M/pokedexcli/api"
 )
 
-func commandMapb(cfg *config) error {
+func commandMapb(cfg *config, _ string) error {
 	URL := cfg.previousLocationAreaURL
 	if URL == "" {
 		fmt.Println("noPreviousMaps..\n", "Use map to go forward before going backwards\n", "use help for more info")
 		return nil
 	}
-	locationAreaResp, err := api.GetLocations(URL)
+	locationAreaResp, err := cfg.client.GetLocations(URL)
 	if err != nil {
 		return err
 	}

@@ -1,14 +1,18 @@
 package main
 
+import "github.com/Iyed-M/pokedexcli/api"
+
 type clicommand struct {
 	name        string
 	description string
-	callback    func(*config) error
+	callback    func(*config, string) error
 }
 
 type config struct {
 	nextLocationAreaURL     string
 	previousLocationAreaURL string
+	client                  *api.Client
+	pokemons                map[string]api.Pokemon
 }
 
 func getAvailableCommands() map[string]clicommand {
@@ -34,6 +38,21 @@ func getAvailableCommands() map[string]clicommand {
 			name:        "kmap",
 			description: "Get previous 20 location areas",
 			callback:    commandMapb,
+		},
+		"explore": {
+			name:        "explore",
+			description: "Explore a location area",
+			callback:    commandExplore,
+		},
+		"catch": {
+			name:        "catch",
+			description: "catch a pokemon",
+			callback:    commandCatch,
+		},
+		"inspect": {
+			name:        "inspect",
+			description: "inspect a pokemon",
+			callback:    commandInspect,
 		},
 	}
 }
